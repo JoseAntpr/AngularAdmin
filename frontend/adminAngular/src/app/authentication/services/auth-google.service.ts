@@ -14,4 +14,8 @@ export class AuthGoogleService {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
+  signOut(): void {
+    this.authService.signOut();
+  }
+
 }
