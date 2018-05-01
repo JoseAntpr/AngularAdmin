@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -11,15 +12,26 @@ export class UserFormComponent implements OnInit {
 
   id: string;
   form: FormGroup;
+  user;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-              public fb: FormBuilder) {
-    this.activatedRoute.params.subscribe( params => {
-      this.id = params['id'];
-    });
+              public fb: FormBuilder,
+              private userService: UserService) {
+
+              this.activatedRoute.params.subscribe( params => {
+                this.id = params['id'];
+              });
   }
 
   ngOnInit() {
+
+    if (this.id === undefined) {
+
+    } else {
+      this.userService.getUser(this.id).subscribe( user => {
+        this.user = user;
+      });
+    }
 
     this.form = this.fb.group({
       'first_name': '',
