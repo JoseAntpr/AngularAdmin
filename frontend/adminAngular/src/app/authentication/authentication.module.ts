@@ -10,10 +10,10 @@ import { AuthGoogleService } from './services/auth-google.service';
   providers: []
 })
 
-export class AuthModule {
+export class AuthenticationModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: AuthModule,
+      ngModule: AuthenticationModule,
       providers: [AuthGoogleService]
     };
   }
