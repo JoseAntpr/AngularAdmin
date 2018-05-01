@@ -13,6 +13,16 @@ export class HomeComponent implements OnInit {
   constructor(public userService:  UserService) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  delete(id: string) {
+    this.userService.deleteUser(id).subscribe(()  => {
+      this.getUsers();
+    });
+  }
+
+  getUsers() {
     this.userService.getUsers().subscribe(users => {
       console.log('users');
       this.users = users;
