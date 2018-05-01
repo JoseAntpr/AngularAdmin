@@ -7,14 +7,11 @@ import 'rxjs/Rx';
 export class UserService {
 
   public baseUrl = environment.apiUrl;
-  public token = localStorage.getItem('currentUser');
 
   constructor( public http: HttpClient ) { }
 
   getUsers() {
-    console.log(JSON.parse(this.token).token);
-    const tokenFunc = JSON.parse(this.token).token;
-    return this.http.get(`${this.baseUrl}/users`, {headers: {'Authorization': `Token ${tokenFunc}`}})
+    return this.http.get(`${this.baseUrl}/users`)
                   .map( res => {
                     console.log(res);
                     return res;
