@@ -17,7 +17,7 @@ import django_heroku
 env = environ.Env(
     DEBUG=(bool, False),
     SECRET_KEY=(str, 'thisIsMyFallbackSecretKey-pry5nl4+(89)f9(a$l^_^=&=wx2i7tg87m8d8*4bka!vv7-(!5'),
-    GOOGLE_CLIENT_ID=(str, ''),
+    GOOGLE_CLIENT_ID=(str, '105430896231-qd3as8u4cvbnkdtbp2lte7apl7ljd2vp.apps.googleusercontent.com'),
     DJANGO_LOG_LEVEL=(str, 'ERROR'),
     DEFAULT_LOG_LEVEL=(str, 'ERROR'),
 )
