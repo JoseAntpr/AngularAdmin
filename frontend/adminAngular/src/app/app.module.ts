@@ -23,6 +23,7 @@ import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider} from 'angula
 // Environment
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserService } from './services/user.service';
 
 
 
@@ -51,6 +52,7 @@ export function provideConfig() {
     AuthenticationModule.forRoot()
   ],
   providers: [
+    UserService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

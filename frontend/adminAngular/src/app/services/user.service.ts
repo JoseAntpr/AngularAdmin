@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
@@ -11,7 +12,9 @@ export class UserService {
   constructor( public http: HttpClient ) { }
 
   getUsers() {
-    return this.http.get(`${this.baseUrl}/users`, {headers: {'Authorization': `Token ${this.token}`}})
+    console.log(JSON.parse(this.token).token);
+    const tokenFunc = JSON.parse(this.token).token;
+    return this.http.get(`${this.baseUrl}/users`, {headers: {'Authorization': `Token ${tokenFunc}`}})
                   .map( res => {
                     console.log(res);
                     return res;
