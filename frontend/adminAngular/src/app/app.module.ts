@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 // Modules
 import { MaterialModule } from './material/material.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -22,6 +22,8 @@ import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider} from 'angula
 
 // Environment
 import { environment } from '../environments/environment';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 
 // AuthService config
@@ -36,14 +38,17 @@ export function provideConfig() {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    UserFormComponent
+    UserFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
     app_routing,
-    AuthenticationModule
+    SocialLoginModule,
+    AuthenticationModule.forRoot()
   ],
   providers: [
     {
