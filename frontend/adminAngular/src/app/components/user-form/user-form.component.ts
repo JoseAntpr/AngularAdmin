@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -34,9 +34,9 @@ export class UserFormComponent implements OnInit {
     }
 
     this.form = this.fb.group({
-      'first_name': '',
-      'last_name': '',
-      'iban': ''
+      'first_name': ['', [Validators.required]],
+      'last_name': ['', [Validators.required]],
+      'iban': ['', [Validators.required]]
     });
   }
 
