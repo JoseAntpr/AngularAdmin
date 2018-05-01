@@ -1,5 +1,5 @@
 <mat-card>
-    <button mat-raised-button color="primary" class="btn btn-block mb-3">Create new</button>
+    <button mat-raised-button color="primary" class="btn btn-block mb-3" [routerLink]="['/new']">Create new</button>
     <table class="table">
         <thead>
             <tr>
@@ -12,8 +12,8 @@
         <tbody>
             <tr>
                 <th scope="row">
-                    <button mat-raised-button color="primary">Primary</button>
-                    <button mat-raised-button color="warn">Warn</button>
+                    <button mat-raised-button color="primary" [routerLink]="['/edit', 5]">Edit</button>
+                    <button mat-raised-button color="warn">Delete</button>
                 </th>
                 <td>Mark</td>
                 <td>Otto</td>
@@ -21,8 +21,8 @@
             </tr>
             <tr>
                 <th scope="row">
-                    <button mat-raised-button color="primary">Primary</button>
-                    <button mat-raised-button color="warn">Warn</button>
+                    <button mat-raised-button color="primary" [routerLink]="['/edit', 6]">Edit</button>
+                    <button mat-raised-button color="warn">Delete</button>
                 </th>
                 <td>Jacob</td>
                 <td>Thornton</td>
@@ -30,8 +30,8 @@
             </tr>
             <tr>
                 <th scope="row">
-                    <button mat-raised-button color="primary">Primary</button>
-                    <button mat-raised-button color="warn">Warn</button>
+                    <button mat-raised-button color="primary" [routerLink]="['/edit', 7]">Edit</button>
+                    <button mat-raised-button color="warn">Delete</button>
                 </th>
                 <td>Larry</td>
                 <td>the Bird</td>
