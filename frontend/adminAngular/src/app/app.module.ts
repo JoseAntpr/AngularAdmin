@@ -9,6 +9,9 @@ import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
+// Routing
+import { app_routing } from './app.routes';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    app_routing
   ],
   providers: [],
   bootstrap: [AppComponent]
