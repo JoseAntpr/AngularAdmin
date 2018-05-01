@@ -26,4 +26,8 @@ export class UserService {
     return this.http.delete(`${this.baseUrl}/users/${id}`);
   }
 
+  createUser( user: any) {
+    return this.http.post(`${this.baseUrl}/users`, user);
+  }
+
 }

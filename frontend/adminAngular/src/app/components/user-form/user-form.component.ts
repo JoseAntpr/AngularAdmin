@@ -45,7 +45,10 @@ export class UserFormComponent implements OnInit {
     if ( this.id !== undefined ) {
       console.log('Actualizar');
     } else {
-      console.log('crear');
+      this.userService.createUser(this.form.value).subscribe( () => {
+        console.log('User saved');
+        this.router.navigate(['/home']);
+      });
     }
   }
 
