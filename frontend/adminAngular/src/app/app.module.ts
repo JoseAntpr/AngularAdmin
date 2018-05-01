@@ -24,6 +24,7 @@ import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider} from 'angula
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserService } from './services/user.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -44,6 +45,7 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
