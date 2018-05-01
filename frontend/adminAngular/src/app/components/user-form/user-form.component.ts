@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe( params => {
+      this.id = params['id'];
+    });
+  }
 
   ngOnInit() {
+  }
+
+  guardar() {
+    if ( this.id !== undefined ) {
+      console.log('Actualizar');
+    } else {
+      console.log('crear');
+    }
   }
 
 }

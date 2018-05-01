@@ -9,6 +9,9 @@
         <mat-form-field>
             <input matInput placeholder="IBAN">
         </mat-form-field>
-        <button mat-raised-button color="primary" class="btn btn-block" [routerLink]="['/home']">Editar</button>
+        <button (click)="guardar()" mat-raised-button color="primary" class="btn btn-block">
+            <span *ngIf="id !== undefined">Update</span>
+            <span *ngIf="id === undefined">Create</span>
+        </button>
     </div>
 </mat-card>
