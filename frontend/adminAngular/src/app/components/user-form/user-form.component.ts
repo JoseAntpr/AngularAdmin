@@ -12,7 +12,11 @@ import { Subscription } from 'rxjs';
 export class UserFormComponent implements OnInit, OnDestroy {
 
   id: string;
-  form: FormGroup;
+  form = this.fb.group({
+    'first_name': ['', [Validators.required]],
+    'last_name': ['', [Validators.required]],
+    'iban': ['', [Validators.required]]
+  });
   user;
   subscription: Subscription[] = [];
 
@@ -26,20 +30,15 @@ export class UserFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    if (this.id === undefined) {
-
-    } else {
+    if (this.id) {
       this.subscription.push(this.userService.getUser(this.id).subscribe( user => {
         this.user = user;
+        if (this.user) {
+          this.form.patchValue({'first_name': this.user.first_name, 'last_name': this.user.last_name, 'iban': this.user.iban});
+        }
+
       }));
     }
-
-    this.form = this.fb.group({
-      'first_name': ['', [Validators.required]],
-      'last_name': ['', [Validators.required]],
-      'iban': ['', [Validators.required]]
-    });
   }
 
   ngOnDestroy() {

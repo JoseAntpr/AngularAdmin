@@ -11,10 +11,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <th scope="row">
+                <td scope="row">
                     <button mat-raised-button color="primary" [routerLink]="['/edit', user.id]" [disabled]="!user.own">Edit</button>
                     <button mat-raised-button color="warn" (click)="delete(user.id)" [disabled]="!user.own">Delete</button>
-                </th>
+                </td>
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.iban }}</td>
