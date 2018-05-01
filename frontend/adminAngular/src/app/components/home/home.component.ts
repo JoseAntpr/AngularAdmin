@@ -8,10 +8,15 @@ import { UserService } from '../../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
+  users;
+
   constructor(public userService:  UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe();
+    this.userService.getUsers().subscribe(users => {
+      console.log('users');
+      this.users = users;
+    });
   }
 
 }

@@ -10,33 +10,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let user of users">
                 <th scope="row">
-                    <button mat-raised-button color="primary" [routerLink]="['/edit', 5]">Edit</button>
-                    <button mat-raised-button color="warn">Delete</button>
+                    <button mat-raised-button color="primary" [routerLink]="['/edit', user.id]" [disabled]="!user.own">Edit</button>
+                    <button mat-raised-button color="warn" [disabled]="!user.own">Delete</button>
                 </th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.iban }}</td>
             </tr>
-            <tr>
-                <th scope="row">
-                    <button mat-raised-button color="primary" [routerLink]="['/edit', 6]">Edit</button>
-                    <button mat-raised-button color="warn">Delete</button>
-                </th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <button mat-raised-button color="primary" [routerLink]="['/edit', 7]">Edit</button>
-                    <button mat-raised-button color="warn">Delete</button>
-                </th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+
         </tbody>
     </table>
 
