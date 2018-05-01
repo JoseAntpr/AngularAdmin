@@ -7,14 +7,29 @@ import { MaterialModule } from './material/material.module';
 
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 
 // Routing
 import { app_routing } from './app.routes';
+
+// Components
 import { HomeComponent } from './components/home/home.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
-import { AuthenticationModule } from './authentication/authentication.module';
+import { LoginComponent } from './components/login/login.component';
 
+// Authentication modules
+import { AuthenticationModule } from './authentication/authentication.module';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
+
+// Environment
+import { environment } from '../environments/environment';
+
+
+// AuthService config
+const config = new AuthServiceConfig([ environment.authConfig ]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -30,7 +45,12 @@ import { AuthenticationModule } from './authentication/authentication.module';
     app_routing,
     AuthenticationModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
