@@ -9,9 +9,15 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  userAuthenticated;
+
   constructor(public authService: AuthGoogleService, public router: Router) { }
 
   ngOnInit() {
+    this.authService.authSubject.subscribe( result => {
+      this.userAuthenticated = result;
+    });
+
   }
 
   logout() {

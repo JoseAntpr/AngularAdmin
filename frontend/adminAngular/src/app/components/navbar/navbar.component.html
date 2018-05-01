@@ -2,6 +2,6 @@
     <mat-toolbar-row>
         <span>AngularAdmin</span>
         <span class="example-spacer"></span>
-        <button (click)="logout()" mat-raised-button color="accent" class="button-left">Logout</button>
+        <button *ngIf="userAuthenticated" (click)="logout()" mat-raised-button color="accent" class="button-left">Logout</button>
     </mat-toolbar-row>
 </mat-toolbar>
