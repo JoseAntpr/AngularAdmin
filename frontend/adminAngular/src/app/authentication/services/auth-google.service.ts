@@ -15,6 +15,10 @@ export class AuthGoogleService {
     return this.authService.authState;
   }
 
+  getAuthenticate() {
+    localStorage.getItem('currentUser') !==  null ? this.authSubject.next(true) :  this.authSubject.next(false);
+  }
+
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authSubject.next(true);
