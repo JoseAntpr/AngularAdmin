@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
+import { User } from '../../user';
 
 @Component({
   selector: 'app-user-form',
@@ -12,13 +13,13 @@ import { Subscription } from 'rxjs';
 })
 export class UserFormComponent implements OnInit, OnDestroy {
 
-  id: string;
+  id: number;
   form = this.fb.group({
     'first_name': ['', [Validators.required]],
     'last_name': ['', [Validators.required]],
     'iban': ['', [Validators.required]]
   });
-  user;
+  user: User;
   subscription: Subscription[] = [];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
@@ -33,7 +34,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.id) {
-      this.subscription.push(this.userService.getUser(this.id).subscribe( user => {
+      this.subscription.push(this.userService.getUser(this.id).subscribe( (user: User) => {
         this.user = user;
         if (this.user) {
           this.form.patchValue({'first_name': this.user.first_name, 'last_name': this.user.last_name, 'iban': this.user.iban});
@@ -50,19 +51,21 @@ export class UserFormComponent implements OnInit, OnDestroy {
   }
 
   guardar() {
-    console.log(this.form.value);
-    if ( this.id !== undefined ) {
-      this.userService.updateUser(this.id, this.form.value).subscribe(() => {
-        console.log('User updated');
-        this.snackBar.open('User updated ', 'Close', {duration: 1000});
-        this.router.navigate(['/home']);
-      });
-    } else {
-      this.userService.createUser(this.form.value).subscribe( () => {
-        console.log('User saved');
-        this.snackBar.open('Users created ', 'Close', {duration: 1000});
-        this.router.navigate(['/home']);
-      });
+    if (this.form.valid) {
+      if ( this.id !== undefined ) {
+        this.userService.updateUser(this.id, this.form.value).subscribe(() => {
+          console.log('User updated');
+          this.snackBar.open('User updated ', 'Close', {duration: 1000});
+          this.router.navigate(['/home']);
+        });
+      } else {
+        this.userService.createUser(this.form.value).subscribe( () => {
+          console.log('User saved');
+          this.snackBar.open('Users created ', 'Close', {duration: 1000});
+          this.router.navigate(['/home']);
+        });
+      }
+
     }
   }
 

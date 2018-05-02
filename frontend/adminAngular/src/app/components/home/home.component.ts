@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
+import { User } from '../../user';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  users;
+  users: User[];
   subscription: Subscription[] = [];
 
   constructor(public userService:  UserService,
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  delete(user) {
+  delete(user: User) {
     this.subscription.push(this.userService.deleteUser(user.id).subscribe(()  => {
       this.snackBar.open(`User ${user.first_name} deleted `, 'Close', {duration: 1000});
       this.getUsers();
@@ -34,8 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getUsers() {
-    this.subscription.push(this.userService.getUsers().subscribe(users => {
-      console.log('users');
+    this.subscription.push(this.userService.getUsers().subscribe((users: User[]) => {
       this.users = users;
     }));
   }

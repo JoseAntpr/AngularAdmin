@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import 'rxjs/Rx';
+import { User } from '../user';
 
 @Injectable()
 export class UserService {
@@ -18,11 +19,11 @@ export class UserService {
 
   }
 
-  getUser( id: string) {
+  getUser( id: number) {
     return this.http.get(`${this.baseUrl}/users/${id}`);
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: number) {
     return this.http.delete(`${this.baseUrl}/users/${id}`);
   }
 
@@ -30,7 +31,7 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/users`, user);
   }
 
-  updateUser( id: string, user: any) {
+  updateUser( id: number, user: User) {
     return this.http.put(`${this.baseUrl}/users/${id}`, user);
   }
 
