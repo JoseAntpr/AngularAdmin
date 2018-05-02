@@ -14,6 +14,7 @@ import { User } from '../../user';
 export class UserFormComponent implements OnInit, OnDestroy {
 
   id: number;
+  read: string;
   form = this.fb.group({
     'first_name': ['', [Validators.required]],
     'last_name': ['', [Validators.required]],
@@ -29,6 +30,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
               this.subscription.push(this.activatedRoute.params.subscribe( params => {
                 this.id = params['id'];
+                this.read = params['read'];
               }));
   }
 
@@ -39,7 +41,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
         if (this.user) {
           this.form.patchValue({'first_name': this.user.first_name, 'last_name': this.user.last_name, 'iban': this.user.iban});
         }
-
       }));
     }
   }

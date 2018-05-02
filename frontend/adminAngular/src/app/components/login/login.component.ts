@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.signInWithGoogle();
     this.subscription = this.authService.authState.subscribe(token => {
       if (token) {
-        console.log('Obteniendo nuestro tokenId', token);
         localStorage.setItem('currentUser', JSON.stringify({ token: token.idToken}));
         this.router.navigate(['/home']);
       }
