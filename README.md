@@ -26,7 +26,7 @@ Setup
 * Implement the frontend against the API
 * Extend the readme on how to build and run the frontend, the frontend webserver should run on port 8001 (http://angular-test.rh-dev.eu:8001)
 
-## Frontend Setup
+##Frontend Setup
 * go to frontend app frontend/adminAngular
 * Install npm with 'sudo apt-get install npm' 
 * Install angular cli 'sudo npm install -g @angular/cli'
