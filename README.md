@@ -26,6 +26,14 @@ Setup
 * Implement the frontend against the API
 * Extend the readme on how to build and run the frontend, the frontend webserver should run on port 8001 (http://angular-test.rh-dev.eu:8001)
 
+## Frontend Setup
+* go to frontend app frontend/adminAngular
+* Install npm with 'sudo apt-get install npm' 
+* Install angular cli 'sudo npm install -g @angular/cli'
+* Save the Client Id in the Angular Environments (src/enrionments/environment.ts) to the GoogleLoginProvider string.
+* You need to install all npm dependencies with 'npm install'
+* To start the app ng serve --disable-host-check (This is because in angular there is a [BUG](https://github.com/Teradata/covalent/issues/582) using)
+
 Authorization
 =============
 
