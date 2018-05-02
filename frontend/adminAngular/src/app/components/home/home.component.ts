@@ -28,10 +28,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   delete(user: User) {
-    this.subscription.push(this.userService.deleteUser(user.id).subscribe(()  => {
-      this.snackBar.open(`User ${user.first_name} deleted `, 'Close', {duration: 1000});
-      this.getUsers();
-    }));
+    if ( user.own) {
+      this.subscription.push(this.userService.deleteUser(user.id).subscribe(()  => {
+        this.snackBar.open(`User ${user.first_name} deleted `, 'Close', {duration: 1000});
+        this.getUsers();
+      }));
+    } else {
+      this.snackBar.open(`You can't delete User ${user.first_name} `, 'Close', {duration: 1000});
+    }
   }
 
   getUsers() {
