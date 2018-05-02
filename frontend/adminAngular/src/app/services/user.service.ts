@@ -14,6 +14,7 @@ export class UserService {
   getUsers() {
     return this.http.get(`${this.baseUrl}/users`)
                   .map( res => {
+                    console.log(res);
                     return res;
                   });
 

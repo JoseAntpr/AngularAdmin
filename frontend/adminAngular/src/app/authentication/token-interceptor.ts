@@ -8,14 +8,13 @@ import {
 import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    public token = JSON.parse(localStorage.getItem('currentUser')).token;
 
     constructor() {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         request = request.clone({
         setHeaders: {
-            Authorization: `Token ${this.token}`
+            Authorization: `Token ${JSON.parse(localStorage.getItem('currentUser')).token}`
         }
         });
         return next.handle(request);

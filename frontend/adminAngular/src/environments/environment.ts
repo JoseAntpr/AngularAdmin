@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   authConfig: {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('GOOGLE_ID_CLIENT');
+    provider: new GoogleLoginProvider('105430896231-qd3as8u4cvbnkdtbp2lte7apl7ljd2vp.apps.googleusercontent.com')
   },
   apiUrl: 'http://angular-test.rh-dev.eu:8000/api',
 

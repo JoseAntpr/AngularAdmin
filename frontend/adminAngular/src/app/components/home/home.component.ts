@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
               public snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    console.log("Oye estas enrtrando");
     this.getUsers();
   }
 
