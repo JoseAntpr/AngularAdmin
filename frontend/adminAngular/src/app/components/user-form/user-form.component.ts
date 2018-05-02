@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -22,7 +23,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               public fb: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              public snackBar: MatSnackBar) {
 
               this.subscription.push(this.activatedRoute.params.subscribe( params => {
                 this.id = params['id'];
@@ -52,11 +54,13 @@ export class UserFormComponent implements OnInit, OnDestroy {
     if ( this.id !== undefined ) {
       this.userService.updateUser(this.id, this.form.value).subscribe(() => {
         console.log('User updated');
+        this.snackBar.open('User updated ', 'Close', {duration: 1000});
         this.router.navigate(['/home']);
       });
     } else {
       this.userService.createUser(this.form.value).subscribe( () => {
         console.log('User saved');
+        this.snackBar.open('Users created ', 'Close', {duration: 1000});
         this.router.navigate(['/home']);
       });
     }
