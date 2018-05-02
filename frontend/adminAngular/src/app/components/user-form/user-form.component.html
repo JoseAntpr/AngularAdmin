@@ -18,9 +18,9 @@
         <mat-error *ngIf="form.get('iban').errors?.required && form.get('iban').touched">
             Iban is<strong>required</strong>
         </mat-error>
-        <button *ngIf="this.user.own" (click)="guardar()" mat-raised-button color="primary" class="btn btn-block" [disabled]="!form.valid">
-            <span *ngIf="id !== undefined">Update</span>
-            <span *ngIf="id === undefined">Create</span>
+        <button (click)="guardar()" mat-raised-button color="primary" class="btn btn-block" [disabled]="!form.valid">
+            <span *ngIf="id">Update</span>
+            <span *ngIf="!id">Create</span>
         </button>
     </form>
 </mat-card>

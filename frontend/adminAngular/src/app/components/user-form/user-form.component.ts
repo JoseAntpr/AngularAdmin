@@ -50,7 +50,10 @@ export class UserFormComponent implements OnInit, OnDestroy {
   guardar() {
     console.log(this.form.value);
     if ( this.id !== undefined ) {
-      console.log('Actualizar');
+      this.userService.updateUser(this.id, this.form.value).subscribe(() => {
+        console.log('User updated');
+        this.router.navigate(['/home']);
+      });
     } else {
       this.userService.createUser(this.form.value).subscribe( () => {
         console.log('User saved');
