@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthGoogleService } from '../../authentication/services/auth-google.service';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,9 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.signInWithGoogle();
     this.subscription = this.authService.authState.subscribe(token => {
       if (token) {
-        localStorage.removeItem('currentUser');
         localStorage.setItem('currentUser', JSON.stringify({ token: token.idToken}));
-        console.log(token);
         this.router.navigate(['/home']);
       }
     });

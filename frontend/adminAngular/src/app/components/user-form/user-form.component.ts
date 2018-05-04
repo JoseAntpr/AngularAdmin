@@ -55,16 +55,16 @@ export class UserFormComponent implements OnInit, OnDestroy {
         if ( this.user.own ) {
           this.userService.updateUser(this.id, this.form.value).subscribe(() => {
             console.log('User updated');
-            this.snackBar.open('User updated ', 'Close', {duration: 1000});
+            this.snackBar.open('User updated ', 'Close', {duration: 2000});
             this.router.navigate(['/home']);
           });
         } else {
-          this.snackBar.open('You can`t update this user. ', 'Close', {duration: 1000});
+          this.snackBar.open('You can`t update this user. ', 'Close', {duration: 2000});
         }
       } else {
         this.userService.createUser(this.form.value).subscribe( () => {
           console.log('User saved');
-          this.snackBar.open('Users created ', 'Close', {duration: 1000});
+          this.snackBar.open('Users created ', 'Close', {duration: 2000});
           this.router.navigate(['/home']);
         });
       }
