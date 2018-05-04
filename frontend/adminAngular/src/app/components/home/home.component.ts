@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs/Subscription';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { User } from '../../user';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
 
   constructor(public userService:  UserService,
-              public snackBar: MatSnackBar) { }
+              public snackBar: MatSnackBar,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getUsers();
@@ -24,6 +26,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.forEach( observable => {
       observable.unsubscribe();
+    });
+  }
+
+  openDeleteDialog(user: User) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      data: { user: user }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.delete(result.user);
     });
   }
 

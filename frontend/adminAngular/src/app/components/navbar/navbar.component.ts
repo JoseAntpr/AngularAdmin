@@ -13,7 +13,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userAuthenticated: boolean;
   subscription: Subscription;
 
-  constructor(public authService: AuthGoogleService, public router: Router) { }
+  constructor(  public authService: AuthGoogleService,
+                public router: Router) { }
 
   ngOnInit() {
     this.authService.isAuthenticated();
@@ -21,7 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       console.log(result);
       this.userAuthenticated = result;
     });
-
   }
 
   ngOnDestroy() {

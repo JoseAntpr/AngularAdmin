@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../user';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-form',
@@ -25,6 +26,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               public formBuilder: FormBuilder,
               private userService: UserService,
+              public location: Location,
               public snackBar: MatSnackBar) {
 
               this.subscription.push(this.activatedRoute.params.subscribe( params => {
@@ -70,6 +72,10 @@ export class UserFormComponent implements OnInit, OnDestroy {
       }
 
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

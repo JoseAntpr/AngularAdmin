@@ -6,6 +6,8 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../components/home/delete-dialog/delete-dialog.component';
 
 
 // Material Modules
@@ -16,14 +18,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   exports: [
     MatCardModule,
     MatButtonModule,
     MatInputModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    DeleteDialogComponent
   ],
   declarations: []
 })
