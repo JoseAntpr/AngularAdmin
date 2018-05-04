@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { MatSnackBar } from '@angular/material';
 import { User } from '../../user';
 
@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit, OnDestroy {
               public snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    console.log("Oye estas enrtrando");
     this.getUsers();
   }
 

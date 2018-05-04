@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import { User } from '../user';
 
 @Injectable()
@@ -14,10 +14,8 @@ export class UserService {
   getUsers() {
     return this.http.get(`${this.baseUrl}/users`)
                   .map( res => {
-                    console.log(res);
                     return res;
                   });
-
   }
 
   getUser( id: number) {
