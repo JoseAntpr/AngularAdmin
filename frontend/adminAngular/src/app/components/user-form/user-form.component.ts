@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../user';
 
 @Component({
@@ -14,8 +14,7 @@ import { User } from '../../user';
 export class UserFormComponent implements OnInit, OnDestroy {
 
   id: number;
-  read: string;
-  form = this.fb.group({
+  form = this.formBuilder.group({
     'first_name': ['', [Validators.required]],
     'last_name': ['', [Validators.required]],
     'iban': ['', [Validators.required]]
@@ -24,13 +23,12 @@ export class UserFormComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-              public fb: FormBuilder,
+              public formBuilder: FormBuilder,
               private userService: UserService,
               public snackBar: MatSnackBar) {
 
               this.subscription.push(this.activatedRoute.params.subscribe( params => {
                 this.id = params['id'];
-                this.read = params['read'];
               }));
   }
 
@@ -51,7 +49,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  guardar() {
+  save() {
     if (this.form.valid) {
       if ( this.id !== undefined ) {
         if ( this.user.own ) {

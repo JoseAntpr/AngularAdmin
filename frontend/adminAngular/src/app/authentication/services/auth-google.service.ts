@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
@@ -13,10 +13,6 @@ export class AuthGoogleService {
 
   get authState() {
     return this.authService.authState;
-  }
-
-  getAuthenticate() {
-    localStorage.getItem('currentUser') !==  null ? this.authSubject.next(true) :  this.authSubject.next(false);
   }
 
   signInWithGoogle(): void {
