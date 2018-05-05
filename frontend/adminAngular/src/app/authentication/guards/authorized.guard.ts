@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRoute, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../user';
 import { UserService } from '../../services/user.service';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class AuthorizedGuard implements CanActivate {
 
   id: number;
-  user: User;
 
     constructor(public router: Router,
-                public activatedRoute: ActivatedRoute,
-                public userService: UserService) {
-       this.activatedRoute.params.subscribe( params => {
-        this.userService.getUser(params['id']).subscribe( (user: User) => {
-          this.user = user;
-        });
-      });
+                public userService: UserService,
+                public snackBar: MatSnackBar) {
     }
 
-    canActivate(): boolean {
-      console.log(this.user.own);
-      if ( !this.user.own ) {
-        this.router.navigate(['home']);
-        return false;
-      }
-      return true;
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+      this.id = +route.paramMap.get('id');
+       return this.userService.getUser(this.id).map( (user: User) => {
+
+         if ( !user.own ) {
+          this.router.navigate(['home']);
+          this.snackBar.open(`You don´t have access to this page`, 'Close', {duration: 2000});
+          return false;
+        }
+        return true;
+       });
     }
 }

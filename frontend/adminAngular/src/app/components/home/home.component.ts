@@ -36,13 +36,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       this.delete(result);
     });
   }
 
   delete(user: User) {
-    console.log(user);
     if ( user.own) {
       this.subscription.push(this.userService.deleteUser(user.id).subscribe(()  => {
         this.snackBar.open(`User ${user.first_name} deleted `, 'Close', {duration: 2000});
