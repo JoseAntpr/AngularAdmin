@@ -29,11 +29,9 @@ Setup
 Frontend Setup
 =============
 * go to frontend app frontend/adminAngular
-* Install npm with 'sudo apt-get install npm' 
-* Install angular cli 'sudo npm install -g @angular/cli'
-* Save the Client Id in the Angular Environments (src/enrionments/environment.ts) to the GoogleLoginProvider string.
+* Save the same Google Oauth Client Id in the Angular Environments (src/enrionments/environment.ts) to the GoogleLoginProvider string.
 * You need to install all npm dependencies with 'npm install'
-* To start the app ng serve --disable-host-check (This is because in angular there is a [BUG](https://github.com/Teradata/covalent/issues/582) using)
+* To start the app 'npm start' (This is because in angular there is a [BUG](https://github.com/Teradata/covalent/issues/582) using)
 
 Authorization
 =============
