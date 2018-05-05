@@ -5,3 +5,4 @@ base:
     - postgresql
     - python
     - heroku
+    - javascript
