@@ -21,6 +21,7 @@ export class AuthorizedGuard implements CanActivate {
     }
 
     canActivate(): boolean {
+      console.log(this.user.own);
       if ( !this.user.own ) {
         this.router.navigate(['home']);
         return false;
