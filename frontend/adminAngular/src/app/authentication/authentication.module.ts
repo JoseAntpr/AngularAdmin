@@ -4,7 +4,9 @@ import { AuthGoogleService } from './services/auth-google.service';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthorizedGuard } from './guards/authorized.guard';
 import { UnathorizedInterceptor } from './interceptors/unathorized-interceptor';
+
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ export class AuthenticationModule {
       providers: [
         AuthGoogleService,
         AuthGuard,
+        AuthorizedGuard,
         {
           provide: HTTP_INTERCEPTORS,
           useClass: TokenInterceptor,

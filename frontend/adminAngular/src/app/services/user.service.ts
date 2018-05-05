@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import 'rxjs/add/operator/map';
+import { Observable} from 'rxjs/Observable';
 import { User } from '../user';
+import { catchError } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class UserService {
@@ -27,11 +30,19 @@ export class UserService {
   }
 
   createUser( user: any) {
-    return this.http.post(`${this.baseUrl}/users`, user);
+    return this.http.post(`${this.baseUrl}/users`, user)
+      .pipe(
+        catchError(err => {
+        return Observable.throw(err);
+      }));
   }
 
   updateUser( id: number, user: User) {
-    return this.http.put(`${this.baseUrl}/users/${id}`, user);
+    return this.http.put(`${this.baseUrl}/users/${id}`, user)
+      .pipe(
+        catchError(err => {
+        return Observable.throw(err);
+      }));
   }
 
 }

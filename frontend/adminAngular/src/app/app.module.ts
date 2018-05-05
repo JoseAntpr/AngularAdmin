@@ -26,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserService } from './services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteDialogComponent } from './components/home/delete-dialog/delete-dialog.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 
 
@@ -43,7 +44,8 @@ export function provideConfig() {
     HomeComponent,
     UserFormComponent,
     NavbarComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

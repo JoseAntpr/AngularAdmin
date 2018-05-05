@@ -59,6 +59,10 @@ export class UserFormComponent implements OnInit, OnDestroy {
             console.log('User updated');
             this.snackBar.open('User updated ', 'Close', {duration: 2000});
             this.router.navigate(['/home']);
+          }, (err) => {
+            if (err.error.iban) {
+              this.snackBar.open(err.error.iban[0], 'Close', {duration: 2000});
+            }
           });
         } else {
           this.snackBar.open('You can`t update this user. ', 'Close', {duration: 2000});
@@ -68,13 +72,17 @@ export class UserFormComponent implements OnInit, OnDestroy {
           console.log('User saved');
           this.snackBar.open('Users created ', 'Close', {duration: 2000});
           this.router.navigate(['/home']);
+        }, (err) => {
+          if (err.error.iban) {
+            this.snackBar.open(err.error.iban[0], 'Close', {duration: 2000});
+          }
         });
       }
 
     }
   }
 
-  goBack() {
+  cancel() {
     this.location.back();
   }
 

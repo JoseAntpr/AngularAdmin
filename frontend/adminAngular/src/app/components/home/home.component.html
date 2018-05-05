@@ -12,7 +12,7 @@
         <tbody>
             <tr *ngFor="let user of users">
                 <td scope="row">
-                    <button mat-raised-button color="primary" [routerLink]="['/edit', user.id]" *ngIf="!user.own">View</button>
+                    <button mat-raised-button color="primary" [routerLink]="['/detail', user.id]" *ngIf="!user.own">View</button>
                     <button mat-raised-button color="primary" [routerLink]="['/edit', user.id]" *ngIf="user.own">Edit</button>
                     <button mat-raised-button color="warn" (click)="openDeleteDialog(user)" [disabled]="!user.own">Delete</button>
                 </td>

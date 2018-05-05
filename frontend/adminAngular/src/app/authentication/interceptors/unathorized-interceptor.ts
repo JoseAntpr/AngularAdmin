@@ -33,6 +33,9 @@ export class UnathorizedInterceptor implements HttpInterceptor {
                     this.authService.signOut();
                     this.snackBar.open(`Your session has expired ... Pls login again`, 'Close', {duration: 2000});
                     this.router.navigate(['/login']);
+                } else if (err.status === 404) {
+                    this.snackBar.open(`Page not found. ERROR 404`, 'Close', {duration: 2000});
+                    this.router.navigate(['/home']);
                 }
             }
         });
